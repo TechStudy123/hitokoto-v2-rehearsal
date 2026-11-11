@@ -8,7 +8,7 @@ rm -rf /tmp/rhdist && mkdir -p /tmp/rhdist && tar xzf $R/dist.tgz -C /tmp/rhdist
 for N in "$@"; do
   P=$((N-1)); [ $N = 3 ] && P=1
   docker rm -f $(docker ps -aq) >/dev/null 2>&1; docker volume prune -af >/dev/null 2>&1; docker network prune -f >/dev/null 2>&1
-  W=/workspaces/rhw/h$N; rm -rf $W ~/team-board; mkdir -p $W; cp -r "/tmp/rhdist/完成コード/ハンズオン${P}の完成/hitokoto" $W/hitokoto
+  W=/workspaces/rhw/h$N; rm -rf $W ~/team-board; mkdir -p $W; cp -r "/tmp/rhdist/完成コード/ハンズオン${P}の完成/hitokoto" $W/hitokoto && chmod -R a+rwX $W/hitokoto   # Codespace の git の取り出しと同じ権限（/workspaces の中は rwx）にそろえる
   ( cd $W && timeout 2400 python3 -W ignore $R/rh.py run $R/steps_h$N.json --os mac --work $W/hitokoto --dist /tmp/rhdist --out $OUT/result_h$N.json > $OUT/log_h$N.txt 2>&1 )
   { docker ps -a; for c in $(docker ps -aq); do echo "=== $c"; docker logs --tail 60 $c; done; } > $OUT/dockerlogs_h$N.txt 2>&1
   ls -laR $W/hitokoto > $OUT/files_h$N.txt 2>&1; umask >> $OUT/files_h$N.txt
