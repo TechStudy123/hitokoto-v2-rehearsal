@@ -1,0 +1,62 @@
+[
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .\ndocker tag hitokoto:1.0 myname/hitokoto:1.0",
+  "mac": "docker build -t hitokoto:1.0 .\ndocker tag hitokoto:1.0 myname/hitokoto:1.0"
+ },
+ {
+  "t": "cmd",
+  "win": "docker images",
+  "mac": "docker images"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker push myname/hitokoto:1.0",
+  "mac": "docker push myname/hitokoto:1.0"
+ },
+ {
+  "t": "out",
+  "text": "The push refers to repository [docker.io/myname/hitokoto]\n…: Pushed\n1.0: digest: sha256:… size: …",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker push hitokoto:1.0",
+  "mac": "docker push hitokoto:1.0"
+ },
+ {
+  "t": "out",
+  "text": "The push refers to repository [docker.io/library/hitokoto]\n…\npush access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker rmi myname/hitokoto:1.0 hitokoto:1.0",
+  "mac": "docker rmi myname/hitokoto:1.0 hitokoto:1.0"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker run -d --name app -p 8000:8000 -e DB_HOST=none myname/hitokoto:1.0",
+  "mac": "docker run -d --name app -p 8000:8000 -e DB_HOST=none myname/hitokoto:1.0"
+ },
+ {
+  "t": "out",
+  "text": "Unable to find image 'myname/hitokoto:1.0' locally\n1.0: Pulling from myname/hitokoto\n…\nStatus: Downloaded newer image for myname/hitokoto:1.0",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン7の完成/hitokoto/templates/base.html",
+  "dst": "templates/base.html"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker build -t myname/hitokoto:1.1 .\ndocker push myname/hitokoto:1.1\ndocker rm -f app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none myname/hitokoto:1.1",
+  "mac": "docker build -t myname/hitokoto:1.1 .\ndocker push myname/hitokoto:1.1\ndocker rm -f app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none myname/hitokoto:1.1"
+ }
+]
