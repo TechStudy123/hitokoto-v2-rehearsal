@@ -1,0 +1,219 @@
+[
+ {
+  "t": "cmd",
+  "win": "docker run -d --name web nginx:1.30",
+  "mac": "docker run -d --name web nginx:1.30"
+ },
+ {
+  "t": "out",
+  "text": "Unable to find image 'nginx:1.30' locally\n1.30: Pulling from library/nginx\n…\nStatus: Downloaded newer image for nginx:1.30\n（長い英数字の ID）",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker ps",
+  "mac": "docker ps"
+ },
+ {
+  "t": "out",
+  "text": "CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS     NAMES\n…              nginx:1.30   \"/docker-entrypoint.…\"   …               Up …           80/tcp    web",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker stop web",
+  "mac": "docker stop web"
+ },
+ {
+  "t": "cmd",
+  "win": "docker ps",
+  "mac": "docker ps"
+ },
+ {
+  "t": "cmd",
+  "win": "docker ps -a",
+  "mac": "docker ps -a"
+ },
+ {
+  "t": "out",
+  "text": "CONTAINER ID   IMAGE        …   STATUS                     PORTS   NAMES\n…   nginx:1.30   …   Exited (0) …   web",
+  "label": "docker ps -a の表示（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker start web\ndocker ps",
+  "mac": "docker start web\ndocker ps"
+ },
+ {
+  "t": "cmd",
+  "rc": 1,
+  "win": "docker rm web",
+  "mac": "docker rm web"
+ },
+ {
+  "t": "out",
+  "text": "Error response from daemon: cannot remove container \"web\": container is running: stop the container before removing or force remove",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker stop web\ndocker rm web\ndocker ps -a",
+  "mac": "docker stop web\ndocker rm web\ndocker ps -a"
+ },
+ {
+  "t": "cmd",
+  "win": "docker run -d --name web -p 8080:80 nginx:1.30",
+  "mac": "docker run -d --name web -p 8080:80 nginx:1.30"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8080/",
+  "status": 200,
+  "contains": "Welcome to nginx!"
+ },
+ {
+  "t": "cmd",
+  "rc": 125,
+  "win": "docker run -d --name web2 -p 8080:80 nginx:1.30",
+  "mac": "docker run -d --name web2 -p 8080:80 nginx:1.30"
+ },
+ {
+  "t": "out",
+  "text": "docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint web2 (…): Bind for 0.0.0.0:8080 failed: port is already allocated",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker ps -a\ndocker rm web2",
+  "mac": "docker ps -a\ndocker rm web2"
+ },
+ {
+  "t": "cmd",
+  "win": "docker run --rm -e GREETING=こんにちは python:3.15-slim python -c \"import os; print(os.environ['GREETING'])\"",
+  "mac": "docker run --rm -e GREETING=こんにちは python:3.15-slim python -c \"import os; print(os.environ['GREETING'])\""
+ },
+ {
+  "t": "out",
+  "text": "こんにちは",
+  "label": "表示される内容（最後の行）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker run --rm -e GREETING=おはよう python:3.15-slim python -c \"import os; print(os.environ['GREETING'])\"",
+  "mac": "docker run --rm -e GREETING=おはよう python:3.15-slim python -c \"import os; print(os.environ['GREETING'])\""
+ },
+ {
+  "t": "out",
+  "text": "おはよう",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker exec -it web sh",
+  "mac": "docker exec -it web sh"
+ },
+ {
+  "t": "cmd",
+  "mac": "docker exec web sh -c \"echo '<meta charset=utf-8><h1>こんにちは</h1>' > /usr/share/nginx/html/index.html\"",
+  "win": null
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8080/",
+  "status": 200,
+  "contains": "こんにちは"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f web\ndocker run -d --name web -p 8080:80 nginx:1.30",
+  "mac": "docker rm -f web\ndocker run -d --name web -p 8080:80 nginx:1.30"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8080/",
+  "status": 200,
+  "contains": "Welcome to nginx!"
+ },
+ {
+  "t": "cmd",
+  "win": "docker logs web",
+  "mac": "docker logs web"
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8080/nothing",
+  "status": 404
+ },
+ {
+  "t": "cmd",
+  "win": "docker run -d --name web2 --memory 256m --cpus 0.5 nginx:1.30\ndocker stats --no-stream",
+  "mac": "docker run -d --name web2 --memory 256m --cpus 0.5 nginx:1.30\ndocker stats --no-stream"
+ },
+ {
+  "t": "out",
+  "text": "CONTAINER ID   NAME   CPU %   MEM USAGE / LIMIT     MEM %   …\n…              web2   0.00%   3.4MiB / 256MiB       1.34%   …\n…              web    0.00%   3.5MiB / 7.7GiB       …",
+  "label": "表示される内容（例。数字は環境で変わります）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker run -d --name hog --memory 64m python:3.15-slim python -c \"x = bytearray(200 * 1024 * 1024)\"",
+  "mac": "docker run -d --name hog --memory 64m python:3.15-slim python -c \"x = bytearray(200 * 1024 * 1024)\""
+ },
+ {
+  "t": "wait",
+  "sec": 5
+ },
+ {
+  "t": "cmd",
+  "win": "docker ps -a",
+  "mac": "docker ps -a"
+ },
+ {
+  "t": "out",
+  "text": "…   python:3.15-slim   …   Exited (137) …   hog",
+  "label": "表示される内容（hog の行）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker inspect -f \"{{.State.OOMKilled}}\" hog",
+  "mac": "docker inspect -f \"{{.State.OOMKilled}}\" hog"
+ },
+ {
+  "t": "out",
+  "text": "true",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker run -d --name crash --restart on-failure:3 python:3.15-slim python -c \"print('起動しました'); raise SystemExit(1)\"",
+  "mac": "docker run -d --name crash --restart on-failure:3 python:3.15-slim python -c \"print('起動しました'); raise SystemExit(1)\""
+ },
+ {
+  "t": "wait",
+  "sec": 10
+ },
+ {
+  "t": "cmd",
+  "win": "docker logs crash",
+  "mac": "docker logs crash"
+ },
+ {
+  "t": "out",
+  "text": "起動しました\n起動しました\n起動しました\n起動しました",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f web web2 hog crash crash2",
+  "mac": "docker rm -f web web2 hog crash crash2"
+ }
+]
