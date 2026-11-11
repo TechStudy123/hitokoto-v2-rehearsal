@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>ひとこと掲示板</h1>
+<p class="lead">みんなのひとことを書き込もう</p>
+{% if use_db %}
+<p class="banner db">データベース（{{ db_host }}）に保存しています</p>
+{% else %}
+<p class="banner memory">データベースを使っていません（書き込みは、コンテナを消すと消えます）</p>
+{% endif %}
+<form method="post" action="/">
+  <input type="text" name="text" maxlength="140" placeholder="ひとこと（140字まで）" required>
+  <button type="submit">書き込む</button>
+</form>
+<ul>
+{% for p in posts %}
+  <li>{{ p.text }}<span class="time">{{ p.created_at.astimezone(jst).strftime("%m/%d %H:%M") }}</span></li>
+{% else %}
+  <li>まだ書き込みはありません</li>
+{% endfor %}
+</ul>
+{% endblock %}
