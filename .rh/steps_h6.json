@@ -46,7 +46,7 @@
  },
  {
   "t": "out",
-  "text": "app-1  | INFO:     データベース db につながりました\n…\napp-1  | INFO:     … \"POST / HTTP/1.1\" 303 See Other",
+  "text": "app-1  | INFO:     … \"POST / HTTP/1.1\" 303 See Other",
   "label": "表示される内容（抜き出し）"
  },
  {
