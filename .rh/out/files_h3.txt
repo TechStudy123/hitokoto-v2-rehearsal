@@ -1,0 +1,34 @@
+/workspaces/rhw/h3/hitokoto:
+total 44
+drwxrwxrwx+ 5 vscode vscode 4096 Nov 11 04:13 .
+drwxrwxrwx+ 3 vscode vscode 4096 Nov 11 04:13 ..
+drwxrwxrwx+ 2 vscode vscode 4096 Nov 11 04:13 .devcontainer
+-rw-rw-rw-  1 vscode vscode   46 Nov 11 04:13 .gitignore
+-rw-rw-rw-  1 vscode vscode 3308 Nov 11 04:13 main.py
+-rw-rw-rw-  1 vscode vscode   67 Nov 11 04:13 pyproject.toml
+-rw-rw-rw-  1 vscode vscode 1962 Nov 11 04:13 README.md
+-rw-rw-rw-  1 vscode vscode   34 Nov 11 04:13 requirements-dev.txt
+-rw-rw-rw-  1 vscode vscode   68 Nov 11 04:13 requirements.txt
+drwxrwxrwx+ 2 vscode vscode 4096 Nov 11 04:13 templates
+drwxrwxrwx+ 2 vscode vscode 4096 Nov 11 04:13 tests
+
+/workspaces/rhw/h3/hitokoto/.devcontainer:
+total 12
+drwxrwxrwx+ 2 vscode vscode 4096 Nov 11 04:13 .
+drwxrwxrwx+ 5 vscode vscode 4096 Nov 11 04:13 ..
+-rw-rw-rw-  1 vscode vscode  508 Nov 11 04:13 devcontainer.json
+
+/workspaces/rhw/h3/hitokoto/templates:
+total 20
+drwxrwxrwx+ 2 vscode vscode 4096 Nov 11 04:13 .
+drwxrwxrwx+ 5 vscode vscode 4096 Nov 11 04:13 ..
+-rw-rw-rw-  1 vscode vscode 1409 Nov 11 04:13 base.html
+-rw-rw-rw-  1 vscode vscode  229 Nov 11 04:13 error.html
+-rw-rw-rw-  1 vscode vscode  812 Nov 11 04:13 index.html
+
+/workspaces/rhw/h3/hitokoto/tests:
+total 12
+drwxrwxrwx+ 2 vscode vscode 4096 Nov 11 04:13 .
+drwxrwxrwx+ 5 vscode vscode 4096 Nov 11 04:13 ..
+-rw-rw-rw-  1 vscode vscode  725 Nov 11 04:13 test_main.py
+0022

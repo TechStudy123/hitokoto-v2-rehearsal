@@ -1,0 +1,61 @@
+/workspaces/hitokoto-v2-rehearsal:
+total 52
+drwxrwxrwx+ 7 vscode root 4096 Nov 11 04:09 .
+drwxr-xrwx+ 5 vscode root 4096 Nov 11 04:13 ..
+drwxrwxrwx+ 2 vscode root 4096 Nov 11 04:09 .devcontainer
+-rwxrwxrwx  1 vscode root 3308 Nov 11 04:09 main.py
+-rwxrwxrwx  1 vscode root   67 Nov 11 04:09 pyproject.toml
+-rwxrwxrwx  1 vscode root 1962 Nov 11 04:09 README.md
+-rwxrwxrwx  1 vscode root   34 Nov 11 04:09 requirements-dev.txt
+-rwxrwxrwx  1 vscode root   68 Nov 11 04:09 requirements.txt
+drwxrwxrwx+ 3 vscode root 4096 Nov 11 04:12 .rh
+drwxrwxrwx+ 2 vscode root 4096 Nov 11 04:09 templates
+drwxrwxrwx+ 2 vscode root 4096 Nov 11 04:09 tests
+
+/workspaces/hitokoto-v2-rehearsal/.devcontainer:
+total 12
+drwxrwxrwx+ 2 vscode root 4096 Nov 11 04:09 .
+drwxrwxrwx+ 7 vscode root 4096 Nov 11 04:09 ..
+-rwxrwxrwx  1 vscode root  508 Nov 11 04:09 devcontainer.json
+
+total 52
+drwxrwxrwx+ 7 vscode root   4096 Nov 11 04:11 .
+drwxrwxrwx+ 7 vscode root   4096 Nov 11 04:09 ..
+-rw-rw-rw-  1 vscode vscode  307 Nov 11 04:11 config
+-rw-rw-rw-  1 vscode root     73 Nov 11 04:09 description
+-rw-rw-rw-  1 vscode root    113 Nov 11 04:10 FETCH_HEAD
+-rw-rw-rw-  1 vscode root     21 Nov 11 04:09 HEAD
+drwxrwxrwx+ 2 vscode root   4096 Nov 11 04:09 hooks
+-rw-rw-rw-  1 vscode root   2069 Nov 11 04:09 index
+drwxrwxrwx+ 2 vscode root   4096 Nov 11 04:09 info
+drwxrwxrwx+ 3 vscode root   4096 Nov 11 04:09 logs
+drwxrwxrwx+ 4 vscode root   4096 Nov 11 04:10 objects
+-rw-rw-rw-  1 vscode root    112 Nov 11 04:09 packed-refs
+drwxrwxrwx+ 5 vscode root   4096 Nov 11 04:10 refs
+
+total 72
+drwxrwxrwx+ 2 vscode root 4096 Nov 11 04:09 .
+drwxrwxrwx+ 7 vscode root 4096 Nov 11 04:11 ..
+-rwxrwxrwx  1 vscode root  478 Nov 11 04:09 applypatch-msg.sample
+-rwxrwxrwx  1 vscode root  896 Nov 11 04:09 commit-msg.sample
+-rwxrwxrwx  1 vscode root 4726 Nov 11 04:09 fsmonitor-watchman.sample
+-rwxrwxrwx  1 vscode root  189 Nov 11 04:09 post-update.sample
+-rwxrwxrwx  1 vscode root  424 Nov 11 04:09 pre-applypatch.sample
+-rwxrwxrwx  1 vscode root 1649 Nov 11 04:09 pre-commit.sample
+-rwxrwxrwx  1 vscode root  416 Nov 11 04:09 pre-merge-commit.sample
+-rwxrwxrwx  1 vscode root 1492 Nov 11 04:09 prepare-commit-msg.sample
+-rwxrwxrwx  1 vscode root 1374 Nov 11 04:09 pre-push.sample
+-rwxrwxrwx  1 vscode root 4898 Nov 11 04:09 pre-rebase.sample
+-rwxrwxrwx  1 vscode root  544 Nov 11 04:09 pre-receive.sample
+-rwxrwxrwx  1 vscode root 2783 Nov 11 04:09 push-to-checkout.sample
+-rwxrwxrwx  1 vscode root 2308 Nov 11 04:09 sendemail-validate.sample
+-rwxrwxrwx  1 vscode root 3650 Nov 11 04:09 update.sample
+
+total 12
+drwxrwxrwx+ 2 vscode root 4096 Nov 11 04:09 .
+drwxrwxrwx+ 7 vscode root 4096 Nov 11 04:11 ..
+-rw-rw-rw-  1 vscode root  240 Nov 11 04:09 exclude
+
+total 16
+drwxrwxrwx+ 3 vscode root 4096 Nov 11 04:09 .
+.rh/run_all.sh: line 18: getfacl: command not found

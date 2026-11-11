@@ -1,0 +1,35 @@
+[OK] 01 cmd: exit 0: docker build -t hitokoto:1.1 .
+[OK] 02 cmd_none: 
+[OK] 03 cmd: exit 0: sed -i 's/^FROM python:3.15-slim$/FROM python:3.15/' Dockerfile
+[OK] 04 cmd: exit 0: docker build -t hitokoto:full .
+[OK] 05 copy: 配布資料から 完成コード/ハンズオン7の完成/hitokoto/Dockerfile → Dockerfile
+[OK] 06 cmd: exit 0: docker images hitokoto
+[OK] 07 out: 表示される内容 OK（行がすべて出た）
+[OK] 08 file: write: Dockerfile
+[OK] 09 file: write: .dockerignore
+[OK] 10 copy: 配布資料から 完成コード/ハンズオン8の完成/hitokoto/templates/base.html → templates/base.html
+[OK] 11 cmd: exit 0: docker build -t hitokoto:2.0 .
+[OK] 12 cmd: exit 0: docker images hitokoto
+[OK] 13 cmd: exit 0: docker run --rm hitokoto:2.0 ls -a
+[OK] 14 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 15 cmd: exit 0: docker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.1
+[OK] 16 wait: 
+[OK] 17 cmd: exit 0: docker exec app whoami
+[OK] 18 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 19 file: write: Dockerfile
+[OK] 20 cmd: exit 0: docker build -t hitokoto:2.0 .
+docker rm -f app
+docker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:2.0
+[OK] 21 wait: 
+[OK] 22 cmd: exit 0: docker exec app whoami
+[OK] 23 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 24 http: GET http://localhost:8000/ → 200
+[OK] 25 cmd: exit 0: sed -i '/^\.env$/d' .dockerignore
+[OK] 26 cmd: exit 0: echo "DB_PASSWORD=renshu-pass" > .env
+docker build -t hitokoto:secret .
+[OK] 27 cmd: exit 0: docker run --rm hitokoto:secret cat .env
+[OK] 28 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 29 copy: 配布資料から 完成コード/ハンズオン8の完成/hitokoto/.dockerignore → .dockerignore
+[OK] 30 cmd: exit 0: docker rmi hitokoto:secret
+[OK] 35 cmd: exit 0: docker rm -f app
+結果: 35 手順中 NG 0

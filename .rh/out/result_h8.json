@@ -1,0 +1,229 @@
+[
+ {
+  "n": 1,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker build -t hitokoto:1.1 .",
+  "out": "equests, pydantic-core, opentelemetry-proto, opentelemetry-api, markdown-it-py, jinja2, httpcore, googleapis-common-protos, email-validator, anyio, watchfiles, starlette, rich, pydantic, opentelemetry-semantic-conventions, opentelemetry-exporter-otlp-proto-common, opentelemetry-exporter-http-transport, httpx, typer, rich-toolkit, pydantic-settings, pydantic-extra-types, opentelemetry-sdk, fastapi, opentelemetry-exporter-otlp-common, fastapi-cloud-cli, fastapi-cli, opentelemetry-exporter-otlp-proto-http\n#8 33.71 \n#8 33.71 Successfully installed MarkupSafe-3.0.4 agent-detector-2.0.0 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.1 detect-installer-0.2.1 dnspython-2.9.2 email-validator-2.3.0 fastapi-0.142.2 fastapi-cli-0.0.32 fastapi-cloud-cli-0.27.1 fastar-0.12.0 googleapis-common-protos-1.76.0 h11-0.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 jinja2-3.1.6 markdown-it-py-4.3.0 mdurl-0.1.2 opentelemetry-api-1.45.2 opentelemetry-exporter-http-transport-0.66b2 opentelemetry-exporter-otlp-common-0.66b2 opentelemetry-exporter-otlp-proto-common-1.45.2 opentelemetry-exporter-otlp-proto-http-1.45.2 opentelemetry-proto-1.45.2 opentelemetry-sdk-1.45.2 opentelemetry-semantic-conventions-0.66b2 protobuf-7.36.2 psycopg-3.3.6 psycopg-binary-3.3.6 pydantic-2.14.3 pydantic-core-2.50.4 pydantic-extra-types-2.11.1 pydantic-settings-2.16.2 pygments-2.21.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 requests-2.34.2 rich-15.0.0 rich-toolkit-0.20.6 rignore-0.8.1 sentry-sdk-2.74.0 shellingham-1.5.4 sqlalchemy-2.1.1 starlette-1.10.0 typer-0.29.0 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.4\n#8 33.71 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n#8 33.72 \n#8 33.72 [notice] A new release of pip is available: 26.2.2 -> 26.3\n#8 33.72 [notice] To update, run: pip install --upgrade pip\n#8 DONE 37.0s\n\n#9 [5/5] COPY . .\n#9 DONE 0.2s\n\n#10 exporting to image\n#10 exporting layers\n#10 exporting layers 9.0s done\n#10 exporting manifest sha256:f8535b73219621aca63586d7d7a0b6f0a8d95e306459218971da38bae2e84a48 0.0s done\n#10 exporting config sha256:6a062b06a3f55500c9f522e501e34f5d1716c4a391799521113613a0e5eaa625 0.0s done\n#10 exporting attestation manifest sha256:02c2439681061a907b74c3b213fc2b6df67aa0c92c539880288e9a54850257ed 0.0s done\n#10 exporting manifest list sha256:ec8b9006bb43c643a354894e595075a097ad47cee43cab79981d413aca038d6b 0.0s done\n#10 naming to docker.io/library/hitokoto:1.1 done\n#10 unpacking to docker.io/library/hitokoto:1.1\n#10 unpacking to docker.io/library/hitokoto:1.1 2.7s done\n#10 DONE 11.8s\n"
+ },
+ {
+  "n": 2,
+  "t": "cmd_none",
+  "ok": true,
+  "msg": ""
+ },
+ {
+  "n": 3,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: sed -i 's/^FROM python:3.15-slim$/FROM python:3.15/' Dockerfile",
+  "out": "__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 4,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker build -t hitokoto:full .",
+  "out": "gleapis-common-protos, email-validator, anyio, watchfiles, starlette, rich, pydantic, opentelemetry-semantic-conventions, opentelemetry-exporter-otlp-proto-common, opentelemetry-exporter-http-transport, httpx, typer, rich-toolkit, pydantic-settings, pydantic-extra-types, opentelemetry-sdk, fastapi, opentelemetry-exporter-otlp-common, fastapi-cloud-cli, fastapi-cli, opentelemetry-exporter-otlp-proto-http\n#9 33.92 \n#9 33.93 Successfully installed MarkupSafe-3.0.4 agent-detector-2.0.0 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.1 detect-installer-0.2.1 dnspython-2.9.2 email-validator-2.3.0 fastapi-0.142.2 fastapi-cli-0.0.32 fastapi-cloud-cli-0.27.1 fastar-0.12.0 googleapis-common-protos-1.76.0 h11-0.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 jinja2-3.1.6 markdown-it-py-4.3.0 mdurl-0.1.2 opentelemetry-api-1.45.2 opentelemetry-exporter-http-transport-0.66b2 opentelemetry-exporter-otlp-common-0.66b2 opentelemetry-exporter-otlp-proto-common-1.45.2 opentelemetry-exporter-otlp-proto-http-1.45.2 opentelemetry-proto-1.45.2 opentelemetry-sdk-1.45.2 opentelemetry-semantic-conventions-0.66b2 protobuf-7.36.2 psycopg-3.3.6 psycopg-binary-3.3.6 pydantic-2.14.3 pydantic-core-2.50.4 pydantic-extra-types-2.11.1 pydantic-settings-2.16.2 pygments-2.21.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 requests-2.34.2 rich-15.0.0 rich-toolkit-0.20.6 rignore-0.8.1 sentry-sdk-2.74.0 shellingham-1.5.4 sqlalchemy-2.1.1 starlette-1.10.0 typer-0.29.0 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.4\n#9 33.93 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n#9 33.93 \n#9 33.93 [notice] A new release of pip is available: 26.2.2 -> 26.3\n#9 33.93 [notice] To update, run: pip install --upgrade pip\n#9 DONE 37.1s\n\n#10 [5/5] COPY . .\n#10 DONE 0.2s\n\n#11 exporting to image\n#11 exporting layers\n#11 exporting layers 8.9s done\n#11 exporting manifest sha256:8c1c27fd9be23e05b50f2f4497f246034c07a41711887cb9bc6ff9697d5572af\n#11 exporting manifest sha256:8c1c27fd9be23e05b50f2f4497f246034c07a41711887cb9bc6ff9697d5572af 0.0s done\n#11 exporting config sha256:64935a48e7ed51cdbc0a4ea434cc2a550fcbee5913574541939cc12e326146a6 0.0s done\n#11 exporting attestation manifest sha256:a39368b768f8715927530616d6ae351e932772977fa64e189a1fac85ef6a05b3 0.0s done\n#11 exporting manifest list sha256:e9ce1a1dc7a20938d423fb35fe1ae5bce67e4440f2c07c9a53754b1d05e05648 0.0s done\n#11 naming to docker.io/library/hitokoto:full done\n#11 unpacking to docker.io/library/hitokoto:full\n#11 unpacking to docker.io/library/hitokoto:full 38.1s done\n#11 DONE 47.1s\n"
+ },
+ {
+  "n": 5,
+  "t": "copy",
+  "ok": true,
+  "msg": "配布資料から 完成コード/ハンズオン7の完成/hitokoto/Dockerfile → Dockerfile"
+ },
+ {
+  "n": 6,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker images hitokoto",
+  "out": "IMAGE           ID             DISK USAGE   CONTENT SIZE   EXTRA\nhitokoto:1.1    ec8b9006bb43        462MB          124MB        \nhitokoto:full   e9ce1a1dc7a2       1.91GB          500MB        \n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 7,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行がすべて出た）"
+ },
+ {
+  "n": 8,
+  "t": "file",
+  "ok": true,
+  "msg": "write: Dockerfile"
+ },
+ {
+  "n": 9,
+  "t": "file",
+  "ok": true,
+  "msg": "write: .dockerignore"
+ },
+ {
+  "n": 10,
+  "t": "copy",
+  "ok": true,
+  "msg": "配布資料から 完成コード/ハンズオン8の完成/hitokoto/templates/base.html → templates/base.html"
+ },
+ {
+  "n": 11,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker build -t hitokoto:2.0 .",
+  "out": "ator, anyio, watchfiles, starlette, rich, pydantic, opentelemetry-semantic-conventions, opentelemetry-exporter-otlp-proto-common, opentelemetry-exporter-http-transport, httpx, typer, rich-toolkit, pydantic-settings, pydantic-extra-types, opentelemetry-sdk, fastapi, opentelemetry-exporter-otlp-common, fastapi-cloud-cli, fastapi-cli, opentelemetry-exporter-otlp-proto-http\n#10 33.19 \n#10 33.19 Successfully installed MarkupSafe-3.0.4 agent-detector-2.0.0 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.1 detect-installer-0.2.1 dnspython-2.9.2 email-validator-2.3.0 fastapi-0.142.2 fastapi-cli-0.0.32 fastapi-cloud-cli-0.27.1 fastar-0.12.0 googleapis-common-protos-1.76.0 h11-0.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 jinja2-3.1.6 markdown-it-py-4.3.0 mdurl-0.1.2 opentelemetry-api-1.45.2 opentelemetry-exporter-http-transport-0.66b2 opentelemetry-exporter-otlp-common-0.66b2 opentelemetry-exporter-otlp-proto-common-1.45.2 opentelemetry-exporter-otlp-proto-http-1.45.2 opentelemetry-proto-1.45.2 opentelemetry-sdk-1.45.2 opentelemetry-semantic-conventions-0.66b2 protobuf-7.36.2 psycopg-3.3.6 psycopg-binary-3.3.6 pydantic-2.14.3 pydantic-core-2.50.4 pydantic-extra-types-2.11.1 pydantic-settings-2.16.2 pygments-2.21.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 requests-2.34.2 rich-15.0.0 rich-toolkit-0.20.6 rignore-0.8.1 sentry-sdk-2.74.0 shellingham-1.5.4 sqlalchemy-2.1.1 starlette-1.10.0 typer-0.29.0 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.4\n#10 33.19 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n#10 33.19 \n#10 33.19 [notice] A new release of pip is available: 26.2.2 -> 26.3\n#10 33.19 [notice] To update, run: pip install --upgrade pip\n#10 DONE 35.8s\n\n#11 [stage-1 2/4] COPY --from=builder /install /usr/local\n#11 DONE 4.0s\n\n#12 [stage-1 3/4] WORKDIR /app\n#12 DONE 0.1s\n\n#13 [stage-1 4/4] COPY . .\n#13 DONE 0.0s\n\n#14 exporting to image\n#14 exporting layers\n#14 exporting layers 5.8s done\n#14 exporting manifest sha256:cc21019742ebb690e4ef0f16f4bcae410b33bca15248fc606da8de350e061802 0.0s done\n#14 exporting config sha256:bf44b01896f3364484f03b29001738a2f415fd85272a1e5407e4e80c99c578b5 0.0s done\n#14 exporting attestation manifest sha256:7b9e25fe178bb9bb3846d204b74603ebdcab8cbb8ea1b7829025a513adc68bac 0.0s done\n#14 exporting manifest list sha256:b2641ea44c4881322bc64843144700080a5cac1bda9a998ee619ab8757b30d7b 0.0s done\n#14 naming to docker.io/library/hitokoto:2.0 done\n#14 unpacking to docker.io/library/hitokoto:2.0\n#14 unpacking to docker.io/library/hitokoto:2.0 2.0s done\n#14 DONE 7.9s\n"
+ },
+ {
+  "n": 12,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker images hitokoto",
+  "out": "IMAGE           ID             DISK USAGE   CONTENT SIZE   EXTRA\nhitokoto:1.1    ec8b9006bb43        462MB          124MB        \nhitokoto:2.0    b2641ea44c48        371MB         84.2MB        \nhitokoto:full   e9ce1a1dc7a2       1.91GB          500MB        \n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 13,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run --rm hitokoto:2.0 ls -a",
+  "out": ".\n..\n.gitignore\nmain.py\npyproject.toml\nrequirements.txt\ntemplates\n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 14,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 15,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.1",
+  "out": "1394a61548dc95cca8d66318f4f9afc25001903ead0da26d18292855b07dbae1\n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 16,
+  "t": "wait",
+  "ok": true,
+  "msg": ""
+ },
+ {
+  "n": 17,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker exec app whoami",
+  "out": "root\n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 18,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 19,
+  "t": "file",
+  "ok": true,
+  "msg": "write: Dockerfile"
+ },
+ {
+  "n": 20,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker build -t hitokoto:2.0 .\ndocker rm -f app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:2.0",
+  "out": "app\n140c2bcc729b8b7defcc8a91a7cc36a98700746d76f8c5a07a9697853db1af6e\n__CWD__=/workspaces/rhw/h8/hitokoto\n#0 building with \"default\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 577B done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/python:3.15-slim\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/python:3.15\n#3 DONE 0.8s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 178B done\n#4 DONE 0.0s\n\n#5 [stage-1 1/5] FROM docker.io/library/python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928\n#5 resolve docker.io/library/python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928 0.0s done\n#5 DONE 0.0s\n\n#6 [builder 1/4] FROM docker.io/library/python:3.15@sha256:8c9a3bf2d6dea60d60a2ae2a07c2b2fb1e7d8daed64b146b6792c74ae0d62ac4\n#6 resolve docker.io/library/python:3.15@sha256:8c9a3bf2d6dea60d60a2ae2a07c2b2fb1e7d8daed64b146b6792c74ae0d62ac4 0.0s done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 332B done\n#7 DONE 0.0s\n\n#8 [builder 3/4] COPY requirements.txt .\n#8 CACHED\n\n#9 [stage-1 3/5] WORKDIR /app\n#9 CACHED\n\n#10 [builder 2/4] WORKDIR /app\n#10 CACHED\n\n#11 [builder 4/4] RUN pip install --no-cache-dir --prefix=/install -r requirements.txt\n#11 CACHED\n\n#12 [stage-1 2/5] COPY --from=builder /install /usr/local\n#12 CACHED\n\n#13 [stage-1 4/5] COPY . .\n#13 CACHED\n\n#14 [stage-1 5/5] RUN useradd --create-home appuser\n#14 DONE 0.4s\n\n#15 exporting to image\n#15 exporting layers 0.1s done\n#15 exporting manifest sha256:9582f4deae7fc706f28c537c7a03bc976dc6a5d0f79e43786702b7c25b49e478 0.0s done\n#15 exporting config sha256:9be813c5931ea5166bb0ce2cf5d2d400db9c5f9a2f8ab6012fd5623ba47e62a3 0.0s done\n#15 exporting attestation manifest sha256:0d2e451e5016cedb08de6e14c3c36049f7479a9f89e169f53557dc8b376a3ebf 0.0s done\n#15 exporting manifest list sha256:a5298c3e08a3d990e75438be497b3c01be4ae77d26c1da4ecedc18836f856d94 0.0s done\n#15 naming to docker.io/library/hitokoto:2.0 done\n#15 unpacking to docker.io/library/hitokoto:2.0 0.0s done\n#15 DONE 0.2s\n"
+ },
+ {
+  "n": 21,
+  "t": "wait",
+  "ok": true,
+  "msg": ""
+ },
+ {
+  "n": 22,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker exec app whoami",
+  "out": "appuser\n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 23,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 24,
+  "t": "http",
+  "ok": true,
+  "msg": "GET http://localhost:8000/ → 200",
+  "out": "<!doctype html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>ひとこと掲示板</title>\n  <style>\n    body { font-family: \"Meiryo\", \"Hiragino Sans\", sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; color: #1f2937; background: #f8fafc; }\n    h1 { color: #1e3a5f; font-size: 1.8rem; margin-bottom: .2rem; }\n    .lead { color: #64748b; margin-top: 0; }\n    form { display: flex; gap: .5rem; margin: 1.2rem 0; }\n    input[type=text] { flex: 1; padding: .6rem; font-size: 1rem; border: 1px solid #cbd5e1; border-radius: 6px; }\n    button { padding: .6rem 1.2rem; font-size: 1rem; background: #0f766e; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }\n    ul { list-style: none; padding: 0; }\n    li { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: .7rem 1rem; margin-bottom: .5rem; }\n    .time { color: #94a3b8; font-size: .8rem; margin-left: .5rem; }\n    .banner { padding: .6rem 1rem; border-radius: 6px; font-size: .9rem; }\n    .memory { background: #fef3c7; color: #92400e; }\n    .db { background: #dcfce7; color: #166534; }\n    .error { background: #fee2e2; color: #991b1b; }\n    footer { color: #94a3b8; font-size: .8rem; text-align: right; margin-top: 2rem; }\n  </style>\n</head>\n<body>\n\n<h1>ひとこと掲示板</h1>\n<p class=\"lead\">みんなのひとことを書き込もう（Compose で動いています）</p>\n\n<p class=\"banner memory\">データベースを使っていません（書き込みは、コンテナを消すと消えます）</p>\n\n<form method=\"post\" action=\"/\">\n  <input type=\"text\" name=\"text\" maxlength=\"140\" placeholder=\"今日のひとこと（140字まで）\" required>\n  <button type=\"submit\">書き込む</button>\n</form>\n<ul>\n\n  <li>まだ書き込みはありません</li>\n\n</ul>\n\n<footer>hitokoto 2.0</footer>\n</body>\n</html>"
+ },
+ {
+  "n": 25,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: sed -i '/^\\.env$/d' .dockerignore",
+  "out": "__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 26,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: echo \"DB_PASSWORD=renshu-pass\" > .env\ndocker build -t hitokoto:secret .",
+  "out": "__CWD__=/workspaces/rhw/h8/hitokoto\n#0 building with \"default\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 577B done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/python:3.15-slim\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/python:3.15\n#3 DONE 0.3s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 173B done\n#4 DONE 0.0s\n\n#5 [stage-1 1/5] FROM docker.io/library/python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928\n#5 resolve docker.io/library/python:3.15-slim@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928 0.0s done\n#5 DONE 0.0s\n\n#6 [builder 1/4] FROM docker.io/library/python:3.15@sha256:8c9a3bf2d6dea60d60a2ae2a07c2b2fb1e7d8daed64b146b6792c74ae0d62ac4\n#6 resolve docker.io/library/python:3.15@sha256:8c9a3bf2d6dea60d60a2ae2a07c2b2fb1e7d8daed64b146b6792c74ae0d62ac4 0.0s done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 385B done\n#7 DONE 0.0s\n\n#8 [builder 4/4] RUN pip install --no-cache-dir --prefix=/install -r requirements.txt\n#8 CACHED\n\n#9 [builder 2/4] WORKDIR /app\n#9 CACHED\n\n#10 [builder 3/4] COPY requirements.txt .\n#10 CACHED\n\n#11 [stage-1 2/5] COPY --from=builder /install /usr/local\n#11 CACHED\n\n#12 [stage-1 3/5] WORKDIR /app\n#12 CACHED\n\n#13 [stage-1 4/5] COPY . .\n#13 DONE 0.0s\n\n#14 [stage-1 5/5] RUN useradd --create-home appuser\n#14 DONE 0.3s\n\n#15 exporting to image\n#15 exporting layers 0.1s done\n#15 exporting manifest sha256:12d98593726aef369044059aac172f0155740a60544a32b6e92e8bb5b2ed17fd 0.0s done\n#15 exporting config sha256:73c8f1bb4df0c3fb1763695a8a5fa493435c6e17bc4cbcce079d06a503c0f01c 0.0s done\n#15 exporting attestation manifest sha256:ca9fb781edd602703d7547e744bcdb36775b854bee28c219be6fd98654b2822e 0.0s done\n#15 exporting manifest list sha256:a82324c23fab3a2cbc7a644375e92dd78abe39fc6a5380e2da207ad45c805fff 0.0s done\n#15 naming to docker.io/library/hitokoto:secret done\n#15 unpacking to docker.io/library/hitokoto:secret 0.0s done\n#15 DONE 0.3s\n"
+ },
+ {
+  "n": 27,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run --rm hitokoto:secret cat .env",
+  "out": "DB_PASSWORD=renshu-pass\n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 28,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 29,
+  "t": "copy",
+  "ok": true,
+  "msg": "配布資料から 完成コード/ハンズオン8の完成/hitokoto/.dockerignore → .dockerignore"
+ },
+ {
+  "n": 30,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker rmi hitokoto:secret",
+  "out": "Untagged: hitokoto:secret\nDeleted: sha256:a82324c23fab3a2cbc7a644375e92dd78abe39fc6a5380e2da207ad45c805fff\n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ },
+ {
+  "n": 31,
+  "t": "cmd",
+  "ok": true,
+  "msg": "skip（表示だけ）"
+ },
+ {
+  "n": 32,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容: 比べる出力が無い（直前のコマンドを実行していない）"
+ },
+ {
+  "n": 33,
+  "t": "cmd",
+  "ok": true,
+  "msg": "skip（表示だけ）"
+ },
+ {
+  "n": 34,
+  "t": "cmd",
+  "ok": true,
+  "msg": "skip（表示だけ）"
+ },
+ {
+  "n": 35,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker rm -f app",
+  "out": "app\n__CWD__=/workspaces/rhw/h8/hitokoto\n"
+ }
+]

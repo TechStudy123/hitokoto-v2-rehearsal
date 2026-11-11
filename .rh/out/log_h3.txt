@@ -1,0 +1,79 @@
+[OK] 01 cmd: exit 0: docker run -d --name web nginx:1.30
+[WARN] 02 out: 表示される内容と実際の出力が違う（WARN）: 「（長い英数字の ID）」が実際の出力に無い
+      c01053a3d69e08102d8e2c274917f2f630eeff5f84d22f8cd9de04e691a0dbef
+      Unable to find image 'nginx:1.30' locally
+      1.30: Pulling from library/nginx
+      2fc2bc44a8d3: Pulling fs layer
+      f7214361b33f: Pulling fs layer
+      37fb86c2a767: Pulling fs layer
+      b532f9701850: Pulling fs layer
+      9c0452afd4ee: Pulling fs layer
+      cbbdc282ecf5: Pulling fs layer
+      89e2dd8a6236: Pulling fs layer
+      89e2dd8a6236: Download complete
+      2fc2bc44a8d3: Download complete
+      f7214361b33f: Download complete
+      9c0452afd4ee: Download complete
+      cbbdc282ecf5: Download complete
+      37fb86c2a767: Download complete
+      b532f9701850: Download complete
+      1e24db3ea44b: Download complete
+      47835a5e6782: Download complete
+      37fb86c2a767: Pull complete
+      f7214361b33f: Pull complete
+      cbbdc282ecf5: Pull complete
+      b532f9701850: Pull complete
+      89e2dd8a6236: Pull complete
+      2fc2bc44a8d3: Pull complete
+      9c0452afd4ee: Pull complete
+      Digest: sha256:42c68eab6f7e22611786a9fe1d1c019e275c50185bd54b8f75dc2b9184322703
+      Status: Downloaded newer image for nginx:1.30
+      
+[OK] 03 cmd: exit 0: docker ps
+[OK] 04 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 05 cmd: exit 0: docker stop web
+[OK] 06 cmd: exit 0: docker ps
+[OK] 07 cmd: exit 0: docker ps -a
+[OK] 08 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 09 cmd: exit 0: docker start web
+docker ps
+[OK] 10 cmd: exit 1（期待 1）: docker rm web
+[OK] 11 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 12 cmd: exit 0: docker stop web
+docker rm web
+docker ps -a
+[OK] 13 cmd: exit 0: docker run -d --name web -p 8080:80 nginx:1.30
+[OK] 14 wait: 
+[OK] 15 http: GET http://localhost:8080/ → 200
+[OK] 16 cmd: exit 125（期待 125）: docker run -d --name web2 -p 8080:80 nginx:1.30
+[OK] 17 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 18 cmd: exit 0: docker ps -a
+docker rm web2
+[OK] 19 cmd: exit 0: docker run --rm -e GREETING=こんにちは python:3.15-slim python -c "import os; print(os.environ['GREETING'])"
+[OK] 20 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 21 cmd: exit 0: docker run --rm -e GREETING=おはよう python:3.15-slim python -c "import os; print(os.environ['GREETING'])"
+[OK] 22 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 24 cmd: exit 0: docker exec web sh -c "echo '<meta charset=utf-8><h1>こんにちは</h1>' > /usr/share/nginx/html/index.html"
+[OK] 25 http: GET http://localhost:8080/ → 200
+[OK] 26 cmd: exit 0: docker rm -f web
+docker run -d --name web -p 8080:80 nginx:1.30
+[OK] 27 wait: 
+[OK] 28 http: GET http://localhost:8080/ → 200
+[OK] 29 cmd: exit 0: docker logs web
+[OK] 30 http: GET http://localhost:8080/nothing → 404
+[OK] 31 cmd: exit 0: docker run -d --name web2 --memory 256m --cpus 0.5 nginx:1.30
+docker stats --no-stream
+[OK] 32 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 33 cmd: exit 0: docker run -d --name hog --memory 64m python:3.15-slim python -c "x = bytearray(200 * 1024 * 1024)"
+[OK] 34 wait: 
+[OK] 35 cmd: exit 0: docker ps -a
+[OK] 36 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 37 cmd: exit 0: docker inspect -f "{{.State.OOMKilled}}" hog
+[OK] 38 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 39 cmd: exit 0: docker run -d --name crash --restart on-failure:3 python:3.15-slim python -c "print('起動しました'); raise SystemExit(1)"
+[OK] 40 wait: 
+[OK] 41 cmd: exit 0: docker logs crash
+[OK] 42 out: 表示される内容 OK（行が同じ順で出た）
+[OK] 43 cmd: exit 0: docker rm -f web web2 hog crash crash2
+WARN（表示される内容の違い）: 1 か所。資料の「表示される内容」を、受講者と同じ環境の対話のシェルで取った出力に合わせる（ガイド01 §28 の 7）
+結果: 43 手順中 NG 0・WARN 1（表示される内容の違い）

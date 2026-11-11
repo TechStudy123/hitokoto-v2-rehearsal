@@ -1,0 +1,291 @@
+[
+ {
+  "n": 1,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run -d --name web nginx:1.30",
+  "out": "c01053a3d69e08102d8e2c274917f2f630eeff5f84d22f8cd9de04e691a0dbef\n__CWD__=/workspaces/rhw/h3/hitokoto\nUnable to find image 'nginx:1.30' locally\n1.30: Pulling from library/nginx\n2fc2bc44a8d3: Pulling fs layer\nf7214361b33f: Pulling fs layer\n37fb86c2a767: Pulling fs layer\nb532f9701850: Pulling fs layer\n9c0452afd4ee: Pulling fs layer\ncbbdc282ecf5: Pulling fs layer\n89e2dd8a6236: Pulling fs layer\n89e2dd8a6236: Download complete\n2fc2bc44a8d3: Download complete\nf7214361b33f: Download complete\n9c0452afd4ee: Download complete\ncbbdc282ecf5: Download complete\n37fb86c2a767: Download complete\nb532f9701850: Download complete\n1e24db3ea44b: Download complete\n47835a5e6782: Download complete\n37fb86c2a767: Pull complete\nf7214361b33f: Pull complete\ncbbdc282ecf5: Pull complete\nb532f9701850: Pull complete\n89e2dd8a6236: Pull complete\n2fc2bc44a8d3: Pull complete\n9c0452afd4ee: Pull complete\nDigest: sha256:42c68eab6f7e22611786a9fe1d1c019e275c50185bd54b8f75dc2b9184322703\nStatus: Downloaded newer image for nginx:1.30\n"
+ },
+ {
+  "n": 2,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容と実際の出力が違う（WARN）: 「（長い英数字の ID）」が実際の出力に無い",
+  "warn": [
+   "「（長い英数字の ID）」が実際の出力に無い"
+  ],
+  "out": "c01053a3d69e08102d8e2c274917f2f630eeff5f84d22f8cd9de04e691a0dbef\nUnable to find image 'nginx:1.30' locally\n1.30: Pulling from library/nginx\n2fc2bc44a8d3: Pulling fs layer\nf7214361b33f: Pulling fs layer\n37fb86c2a767: Pulling fs layer\nb532f9701850: Pulling fs layer\n9c0452afd4ee: Pulling fs layer\ncbbdc282ecf5: Pulling fs layer\n89e2dd8a6236: Pulling fs layer\n89e2dd8a6236: Download complete\n2fc2bc44a8d3: Download complete\nf7214361b33f: Download complete\n9c0452afd4ee: Download complete\ncbbdc282ecf5: Download complete\n37fb86c2a767: Download complete\nb532f9701850: Download complete\n1e24db3ea44b: Download complete\n47835a5e6782: Download complete\n37fb86c2a767: Pull complete\nf7214361b33f: Pull complete\ncbbdc282ecf5: Pull complete\nb532f9701850: Pull complete\n89e2dd8a6236: Pull complete\n2fc2bc44a8d3: Pull complete\n9c0452afd4ee: Pull complete\nDigest: sha256:42c68eab6f7e22611786a9fe1d1c019e275c50185bd54b8f75dc2b9184322703\nStatus: Downloaded newer image for nginx:1.30\n"
+ },
+ {
+  "n": 3,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker ps",
+  "out": "CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS                  PORTS     NAMES\nc01053a3d69e   nginx:1.30   \"/docker-entrypoint.…\"   4 seconds ago   Up Less than a second   80/tcp    web\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 4,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 5,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker stop web",
+  "out": "web\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 6,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker ps",
+  "out": "CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 7,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker ps -a",
+  "out": "CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS                              PORTS     NAMES\nc01053a3d69e   nginx:1.30   \"/docker-entrypoint.…\"   5 seconds ago   Exited (0) Less than a second ago             web\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 8,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 9,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker start web\ndocker ps",
+  "out": "web\nCONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS                  PORTS     NAMES\nc01053a3d69e   nginx:1.30   \"/docker-entrypoint.…\"   5 seconds ago   Up Less than a second   80/tcp    web\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 10,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 1（期待 1）: docker rm web",
+  "out": "Error response from daemon: cannot remove container \"web\": container is running: stop the container before removing or force remove\n"
+ },
+ {
+  "n": 11,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 12,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker stop web\ndocker rm web\ndocker ps -a",
+  "out": "web\nweb\nCONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 13,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run -d --name web -p 8080:80 nginx:1.30",
+  "out": "8c96c25b68ed2b535d80d9c806a6eedb32ecb4be04745f7662f9445b88e4b815\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 14,
+  "t": "wait",
+  "ok": true,
+  "msg": ""
+ },
+ {
+  "n": 15,
+  "t": "http",
+  "ok": true,
+  "msg": "GET http://localhost:8080/ → 200",
+  "out": "<!DOCTYPE html>\n<html>\n<head>\n<title>Welcome to nginx!</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>Welcome to nginx!</h1>\n<p>If you see this page, nginx is successfully installed and working.\nFurther configuration is required for the web server, reverse proxy, \nAPI gateway, load balancer, content cache, or other features.</p>\n\n<p>For online documentation and support please refer to\n<a href=\"https://nginx.org/\">nginx.org</a>.<br/>\nTo engage with the community please visit\n<a href=\"https://community.nginx.org/\">community.nginx.org</a>.<br/>\nFor enterprise grade support, professional services, additional \nsecurity features and capabilities please refer to\n<a href=\"https://f5.com/nginx\">f5.com/nginx</a>.</p>\n\n<p><em>Thank you for using nginx.</em></p>\n</body>\n</html>\n"
+ },
+ {
+  "n": 16,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 125（期待 125）: docker run -d --name web2 -p 8080:80 nginx:1.30",
+  "out": "ce90de0a50aace8ffc8308946ec51f946e0b514cce11b6606a50dd59fca73e2b\ndocker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint web2 (0ba18d63fbe5335158853ed169d52d14996899da1e472bb46cbd25af345683c1): Bind for 0.0.0.0:8080 failed: port is already allocated\n\nRun 'docker run --help' for more information\n"
+ },
+ {
+  "n": 17,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 18,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker ps -a\ndocker rm web2",
+  "out": "CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS                                     NAMES\nce90de0a50aa   nginx:1.30   \"/docker-entrypoint.…\"   1 second ago    Created                                                  web2\n8c96c25b68ed   nginx:1.30   \"/docker-entrypoint.…\"   8 seconds ago   Up 7 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   web\nweb2\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 19,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run --rm -e GREETING=こんにちは python:3.15-slim python -c \"import os; print(os.environ['GREETING'])\"",
+  "out": "こんにちは\n__CWD__=/workspaces/rhw/h3/hitokoto\nUnable to find image 'python:3.15-slim' locally\n3.15-slim: Pulling from library/python\nf01b8d07ba2a: Pulling fs layer\n490d435ea363: Pulling fs layer\nba56bf6127ad: Pulling fs layer\n37fb86c2a767: Pulling fs layer\n37fb86c2a767: Already exists\nf01b8d07ba2a: Download complete\n490d435ea363: Download complete\nba56bf6127ad: Download complete\n490d435ea363: Pull complete\n81b0e42c04f5: Download complete\n2dca94a5358b: Download complete\nf01b8d07ba2a: Pull complete\nba56bf6127ad: Pull complete\nDigest: sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928\nStatus: Downloaded newer image for python:3.15-slim\n"
+ },
+ {
+  "n": 20,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 21,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run --rm -e GREETING=おはよう python:3.15-slim python -c \"import os; print(os.environ['GREETING'])\"",
+  "out": "おはよう\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 22,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 23,
+  "t": "cmd",
+  "ok": true,
+  "msg": "skip（表示だけ）"
+ },
+ {
+  "n": 24,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker exec web sh -c \"echo '<meta charset=utf-8><h1>こんにちは</h1>' > /usr/share/nginx/html/index.html\"",
+  "out": "__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 25,
+  "t": "http",
+  "ok": true,
+  "msg": "GET http://localhost:8080/ → 200",
+  "out": "<meta charset=utf-8><h1>こんにちは</h1>\n"
+ },
+ {
+  "n": 26,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker rm -f web\ndocker run -d --name web -p 8080:80 nginx:1.30",
+  "out": "web\nd21a2a08c22e1aee50e448cca1c2d431e3bc2e5a2fff8b0cce9c4df230c0ff98\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 27,
+  "t": "wait",
+  "ok": true,
+  "msg": ""
+ },
+ {
+  "n": 28,
+  "t": "http",
+  "ok": true,
+  "msg": "GET http://localhost:8080/ → 200",
+  "out": "<!DOCTYPE html>\n<html>\n<head>\n<title>Welcome to nginx!</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>Welcome to nginx!</h1>\n<p>If you see this page, nginx is successfully installed and working.\nFurther configuration is required for the web server, reverse proxy, \nAPI gateway, load balancer, content cache, or other features.</p>\n\n<p>For online documentation and support please refer to\n<a href=\"https://nginx.org/\">nginx.org</a>.<br/>\nTo engage with the community please visit\n<a href=\"https://community.nginx.org/\">community.nginx.org</a>.<br/>\nFor enterprise grade support, professional services, additional \nsecurity features and capabilities please refer to\n<a href=\"https://f5.com/nginx\">f5.com/nginx</a>.</p>\n\n<p><em>Thank you for using nginx.</em></p>\n</body>\n</html>\n"
+ },
+ {
+  "n": 29,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker logs web",
+  "out": "/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration\n/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh\n10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf\n10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf\n/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh\n/docker-entrypoint.sh: Configuration complete; ready for start up\n172.17.0.1 - - [11/Nov/2026:04:13:48 +0000] \"GET / HTTP/1.1\" 200 896 \"-\" \"Python-urllib/3.12\" \"-\"\n__CWD__=/workspaces/rhw/h3/hitokoto\n2026/11/11 04:13:42 [notice] 1#1: using the \"epoll\" event method\n2026/11/11 04:13:42 [notice] 1#1: nginx/1.30.6\n2026/11/11 04:13:42 [notice] 1#1: built by gcc 14.2.0 (Debian 14.2.0-19) \n2026/11/11 04:13:42 [notice] 1#1: OS: Linux 6.8.0-1070-azure\n2026/11/11 04:13:42 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288\n2026/11/11 04:13:42 [notice] 1#1: start worker processes\n2026/11/11 04:13:42 [notice] 1#1: start worker process 29\n2026/11/11 04:13:42 [notice] 1#1: start worker process 30\n"
+ },
+ {
+  "n": 30,
+  "t": "http",
+  "ok": true,
+  "msg": "GET http://localhost:8080/nothing → 404",
+  "out": "<html>\r\n<head><title>404 Not Found</title></head>\r\n<body>\r\n<center><h1>404 Not Found</h1></center>\r\n<hr><center>nginx/1.30.6</center>\r\n</body>\r\n</html>\r\n"
+ },
+ {
+  "n": 31,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run -d --name web2 --memory 256m --cpus 0.5 nginx:1.30\ndocker stats --no-stream",
+  "out": "da376e5536fe5feb89b2b106c8ace9cedd7be3e5360e0200a0820a735791dcbf\nCONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O     PIDS\nda376e5536fe   web2      0.00%     3.355MiB / 256MiB     1.31%     426B / 84B        0B / 8.19kB   3\nd21a2a08c22e   web       0.00%     3.406MiB / 7.756GiB   0.04%     1.96kB / 2.34kB   0B / 12.3kB   3\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 32,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 33,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run -d --name hog --memory 64m python:3.15-slim python -c \"x = bytearray(200 * 1024 * 1024)\"",
+  "out": "b3397bac8a5282a61b161a1c9902c8564ec5f613863e228b5714264f0d8c9ba7\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 34,
+  "t": "wait",
+  "ok": true,
+  "msg": ""
+ },
+ {
+  "n": 35,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker ps -a",
+  "out": "CONTAINER ID   IMAGE              COMMAND                  CREATED          STATUS                       PORTS                                     NAMES\nb3397bac8a52   python:3.15-slim   \"python -c 'x = byte…\"   6 seconds ago    Exited (137) 4 seconds ago                                             hog\nda376e5536fe   nginx:1.30         \"/docker-entrypoint.…\"   8 seconds ago    Up 7 seconds                 80/tcp                                    web2\nd21a2a08c22e   nginx:1.30         \"/docker-entrypoint.…\"   14 seconds ago   Up 13 seconds                0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   web\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 36,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 37,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker inspect -f \"{{.State.OOMKilled}}\" hog",
+  "out": "true\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 38,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 39,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker run -d --name crash --restart on-failure:3 python:3.15-slim python -c \"print('起動しました'); raise SystemExit(1)\"",
+  "out": "0e0dab062f1010ed46d7b3366350b43f6103c0759b9201ed125280fcd933d582\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 40,
+  "t": "wait",
+  "ok": true,
+  "msg": ""
+ },
+ {
+  "n": 41,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker logs crash",
+  "out": "起動しました\n起動しました\n起動しました\n起動しました\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ },
+ {
+  "n": 42,
+  "t": "out",
+  "ok": true,
+  "msg": "表示される内容 OK（行が同じ順で出た）"
+ },
+ {
+  "n": 43,
+  "t": "cmd",
+  "ok": true,
+  "msg": "exit 0: docker rm -f web web2 hog crash crash2",
+  "out": "web\nweb2\nhog\ncrash\n__CWD__=/workspaces/rhw/h3/hitokoto\n"
+ }
+]
