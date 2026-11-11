@@ -1,0 +1,188 @@
+[
+ {
+  "t": "file",
+  "path": "Dockerfile",
+  "text": "FROM python:3.15-slim",
+  "label": "Dockerfile新しく作る"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .",
+  "mac": "docker build -t hitokoto:1.0 ."
+ },
+ {
+  "t": "out",
+  "text": "#4 [1/1] FROM docker.io/library/python:3.15-slim@sha256:…\n…\n#5 naming to docker.io/library/hitokoto:1.0 done",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker images",
+  "mac": "docker images"
+ },
+ {
+  "t": "file",
+  "path": "Dockerfile",
+  "text": "FROM python:3.15-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY . .\nEXPOSE 8000\nCMD [\"fastapi\", \"run\", \"main.py\", \"--port\", \"8000\"]",
+  "label": "Dockerfile置き換え"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .",
+  "mac": "docker build -t hitokoto:1.0 ."
+ },
+ {
+  "t": "out",
+  "text": "#5 [1/5] FROM docker.io/library/python:3.15-slim@sha256:…\n#6 [2/5] WORKDIR /app\n#7 [3/5] COPY requirements.txt .\n#8 [4/5] RUN pip install -r requirements.txt\n…\n#9 [5/5] COPY . .\n…\n#10 naming to docker.io/library/hitokoto:1.0 done",
+  "label": "表示される内容（抜き出し。並び方は環境によって変わります）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .",
+  "mac": "docker build -t hitokoto:1.0 ."
+ },
+ {
+  "t": "cmd",
+  "win": "docker run -d --name app -p 8000:8000 hitokoto:1.0",
+  "mac": "docker run -d --name app -p 8000:8000 hitokoto:1.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "cmd",
+  "win": "docker ps -a",
+  "mac": "docker ps -a"
+ },
+ {
+  "t": "out",
+  "text": "…   hitokoto:1.0   …   Exited (1) …   app",
+  "label": "表示される内容（app の行）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker logs app",
+  "mac": "docker logs app"
+ },
+ {
+  "t": "out",
+  "text": "…\nKeyError: 'DB_HOST'",
+  "label": "表示される内容（最後の行）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.0",
+  "mac": "docker rm app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "データベースを使っていません"
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン4の完成/hitokoto/templates/index.html",
+  "dst": "templates/index.html"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .",
+  "mac": "docker build -t hitokoto:1.0 ."
+ },
+ {
+  "t": "out",
+  "text": "#6 [2/5] WORKDIR /app\n#6 CACHED\n#7 [3/5] COPY requirements.txt .\n#7 CACHED\n#8 [4/5] RUN pip install -r requirements.txt\n#8 CACHED\n#9 [5/5] COPY . .",
+  "label": "表示される内容（抜き出し。並び方は環境によって変わります）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.0",
+  "mac": "docker rm -f app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "Docker で動いています"
+ },
+ {
+  "t": "file",
+  "path": "Dockerfile",
+  "text": "FROM python:3.15-slim\nWORKDIR /app\nCOPY . .\nRUN pip install -r requirements.txt\nEXPOSE 8000\nCMD [\"fastapi\", \"run\", \"main.py\", \"--port\", \"8000\"]",
+  "label": "Dockerfile（並べ方 A。確かめたら戻します）置き換え"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .",
+  "mac": "docker build -t hitokoto:1.0 ."
+ },
+ {
+  "t": "cmd",
+  "win": "echo \"# 練習\" >> main.py",
+  "mac": "echo \"# 練習\" >> main.py"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .",
+  "mac": "docker build -t hitokoto:1.0 ."
+ },
+ {
+  "t": "file",
+  "path": "Dockerfile",
+  "text": "FROM python:3.15-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY . .\nEXPOSE 8000\nCMD [\"fastapi\", \"run\", \"main.py\", \"--port\", \"8000\"]",
+  "label": "Dockerfile（STEP 3 の形に戻す）置き換え"
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン3の完成/hitokoto/main.py",
+  "dst": "main.py"
+ },
+ {
+  "t": "cmd",
+  "win": "echo \"DB_PASSWORD=renshu-pass\" > .env\ndocker build -t hitokoto:1.0 .\ndocker run --rm hitokoto:1.0 ls -a",
+  "mac": "echo \"DB_PASSWORD=renshu-pass\" > .env\ndocker build -t hitokoto:1.0 .\ndocker run --rm hitokoto:1.0 ls -a"
+ },
+ {
+  "t": "out",
+  "text": ".\n..\n.devcontainer\n.env\n.gitignore\nDockerfile\n…",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "file",
+  "path": ".dockerignore",
+  "text": ".git\n.venv\n*.log\n.env\n__pycache__",
+  "label": ".dockerignore新しく作る"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.0 .\ndocker run --rm hitokoto:1.0 ls -a",
+  "mac": "docker build -t hitokoto:1.0 .\ndocker run --rm hitokoto:1.0 ls -a"
+ },
+ {
+  "t": "cmd",
+  "win": "rm .env\ndocker rm -f app",
+  "mac": "rm .env\ndocker rm -f app"
+ },
+ {
+  "t": "tree",
+  "root": ".",
+  "files": [
+   "Dockerfile",
+   ".dockerignore",
+   "main.py"
+  ],
+  "absent": [
+   ".env"
+  ]
+ }
+]
