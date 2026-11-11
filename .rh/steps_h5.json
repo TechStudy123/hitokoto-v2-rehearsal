@@ -1,0 +1,154 @@
+[
+ {
+  "t": "cmd",
+  "win": "docker run -d --name db -e POSTGRES_PASSWORD=renshu-pass -v pgdata:/var/lib/postgresql postgres:18",
+  "mac": "docker run -d --name db -e POSTGRES_PASSWORD=renshu-pass -v pgdata:/var/lib/postgresql postgres:18"
+ },
+ {
+  "t": "wait",
+  "sec": 8
+ },
+ {
+  "t": "cmd",
+  "win": "docker logs db",
+  "mac": "docker logs db"
+ },
+ {
+  "t": "out",
+  "text": "…\n… LOG:  database system is ready to accept connections",
+  "label": "表示される内容（最後の行）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker exec db psql -U postgres -c \"CREATE TABLE memo (text text); INSERT INTO memo VALUES ('食器棚に入れたメモ');\"",
+  "mac": "docker exec db psql -U postgres -c \"CREATE TABLE memo (text text); INSERT INTO memo VALUES ('食器棚に入れたメモ');\""
+ },
+ {
+  "t": "cmd",
+  "win": "docker exec db psql -U postgres -c \"SELECT * FROM memo;\"",
+  "mac": "docker exec db psql -U postgres -c \"SELECT * FROM memo;\""
+ },
+ {
+  "t": "out",
+  "text": "        text\n--------------------\n 食器棚に入れたメモ\n(1 row)",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f db\ndocker run -d --name db -e POSTGRES_PASSWORD=renshu-pass -v pgdata:/var/lib/postgresql postgres:18",
+  "mac": "docker rm -f db\ndocker run -d --name db -e POSTGRES_PASSWORD=renshu-pass -v pgdata:/var/lib/postgresql postgres:18"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "cmd",
+  "win": "docker exec db psql -U postgres -c \"SELECT * FROM memo;\"",
+  "mac": "docker exec db psql -U postgres -c \"SELECT * FROM memo;\""
+ },
+ {
+  "t": "cmd",
+  "win": "docker volume ls\ndocker volume inspect pgdata",
+  "mac": "docker volume ls\ndocker volume inspect pgdata"
+ },
+ {
+  "t": "cmd",
+  "rc": 1,
+  "win": "docker volume rm pgdata",
+  "mac": "docker volume rm pgdata"
+ },
+ {
+  "t": "out",
+  "text": "Error response from daemon: remove pgdata: volume is in use - […]",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f db\ndocker volume rm pgdata",
+  "mac": "docker rm -f db\ndocker volume rm pgdata"
+ },
+ {
+  "t": "cmd",
+  "win": "docker network create hitokoto-net\ndocker run -d --name db --network hitokoto-net -e POSTGRES_PASSWORD=renshu-pass -v pgdata:/var/lib/postgresql postgres:18",
+  "mac": "docker network create hitokoto-net\ndocker run -d --name db --network hitokoto-net -e POSTGRES_PASSWORD=renshu-pass -v pgdata:/var/lib/postgresql postgres:18"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "cmd",
+  "win": "docker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=db -e DB_PASSWORD=renshu-pass hitokoto:1.0",
+  "mac": "docker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=db -e DB_PASSWORD=renshu-pass hitokoto:1.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "データベース（db）に保存しています"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f app\ndocker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=localhost -e DB_PASSWORD=renshu-pass hitokoto:1.0",
+  "mac": "docker rm -f app\ndocker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=localhost -e DB_PASSWORD=renshu-pass hitokoto:1.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 500,
+  "contains": "つながりません"
+ },
+ {
+  "t": "cmd",
+  "win": "docker ps\ndocker logs app",
+  "mac": "docker ps\ndocker logs app"
+ },
+ {
+  "t": "out",
+  "text": "…connection failed: connection to server at \"127.0.0.1\", port 5432 failed: Connection refused",
+  "label": "表示される内容（ログの抜き出し）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f app\ndocker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=db -e DB_PASSWORD=renshu-pass hitokoto:1.0",
+  "mac": "docker rm -f app\ndocker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=db -e DB_PASSWORD=renshu-pass hitokoto:1.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f app\ndocker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=db -e DB_PASSWORD=renshu-pass -v \"$(pwd)\":/app hitokoto:1.0",
+  "mac": "docker rm -f app\ndocker run -d --name app --network hitokoto-net -p 8000:8000 -e DB_HOST=db -e DB_PASSWORD=renshu-pass -v \"$(pwd)\":/app hitokoto:1.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン5の完成/hitokoto/templates/index.html",
+  "dst": "templates/index.html"
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "今日のひとこと"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f app db\ndocker network rm hitokoto-net\ndocker volume rm pgdata",
+  "mac": "docker rm -f app db\ndocker network rm hitokoto-net\ndocker volume rm pgdata"
+ }
+]
