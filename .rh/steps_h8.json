@@ -1,0 +1,180 @@
+[
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:1.1 .",
+  "mac": "docker build -t hitokoto:1.1 ."
+ },
+ {
+  "t": "cmd_none"
+ },
+ {
+  "t": "cmd",
+  "mac": "sed -i 's/^FROM python:3.15-slim$/FROM python:3.15/' Dockerfile",
+  "win": null
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:full .",
+  "mac": "docker build -t hitokoto:full ."
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン7の完成/hitokoto/Dockerfile",
+  "dst": "Dockerfile"
+ },
+ {
+  "t": "cmd",
+  "win": "docker images hitokoto",
+  "mac": "docker images hitokoto"
+ },
+ {
+  "t": "out",
+  "text": "IMAGE           ID      DISK USAGE   CONTENT SIZE   EXTRA\nhitokoto:1.1    …\nhitokoto:full   …",
+  "label": "表示される内容（例。並び方と数字は環境によって変わります）"
+ },
+ {
+  "t": "file",
+  "path": "Dockerfile",
+  "text": "# ---- 1つ目のステージ: 作る（ライブラリを入れる道具がそろった大きいイメージ）\nFROM python:3.15 AS builder\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir --prefix=/install -r requirements.txt\n\n# ---- 2つ目のステージ: 動かす（必要なものだけを小さいイメージに）\nFROM python:3.15-slim\nCOPY --from=builder /install /usr/local\nWORKDIR /app\nCOPY . .\nEXPOSE 8000\nCMD [\"fastapi\", \"run\", \"main.py\", \"--port\", \"8000\"]",
+  "label": "Dockerfile置き換え"
+ },
+ {
+  "t": "file",
+  "path": ".dockerignore",
+  "text": ".git\n.venv\n*.log\n.env\n__pycache__\ntests\nrequirements-dev.txt\n.devcontainer\ncompose.yaml\n.env.example\nREADME.md\nDockerfile\n.dockerignore",
+  "label": ".dockerignore置き換え"
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン8の完成/hitokoto/templates/base.html",
+  "dst": "templates/base.html"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:2.0 .",
+  "mac": "docker build -t hitokoto:2.0 ."
+ },
+ {
+  "t": "cmd",
+  "win": "docker images hitokoto",
+  "mac": "docker images hitokoto"
+ },
+ {
+  "t": "cmd",
+  "win": "docker run --rm hitokoto:2.0 ls -a",
+  "mac": "docker run --rm hitokoto:2.0 ls -a"
+ },
+ {
+  "t": "out",
+  "text": ".\n..\n.gitignore\nmain.py\npyproject.toml\nrequirements.txt\ntemplates",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.1",
+  "mac": "docker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:1.1"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "cmd",
+  "win": "docker exec app whoami",
+  "mac": "docker exec app whoami"
+ },
+ {
+  "t": "out",
+  "text": "root",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "file",
+  "path": "Dockerfile",
+  "text": "# ---- 1つ目のステージ: 作る（ライブラリを入れる道具がそろった大きいイメージ）\nFROM python:3.15 AS builder\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir --prefix=/install -r requirements.txt\n\n# ---- 2つ目のステージ: 動かす（必要なものだけを小さいイメージに）\nFROM python:3.15-slim\nCOPY --from=builder /install /usr/local\nWORKDIR /app\nCOPY . .\nRUN useradd --create-home appuser\nUSER appuser\nEXPOSE 8000\nCMD [\"fastapi\", \"run\", \"main.py\", \"--port\", \"8000\"]",
+  "label": "Dockerfile置き換え"
+ },
+ {
+  "t": "cmd",
+  "win": "docker build -t hitokoto:2.0 .\ndocker rm -f app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:2.0",
+  "mac": "docker build -t hitokoto:2.0 .\ndocker rm -f app\ndocker run -d --name app -p 8000:8000 -e DB_HOST=none hitokoto:2.0"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "cmd",
+  "win": "docker exec app whoami",
+  "mac": "docker exec app whoami"
+ },
+ {
+  "t": "out",
+  "text": "appuser",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "hitokoto 2.0"
+ },
+ {
+  "t": "cmd",
+  "mac": "sed -i '/^\\.env$/d' .dockerignore",
+  "win": null
+ },
+ {
+  "t": "cmd",
+  "win": "echo \"DB_PASSWORD=renshu-pass\" > .env\ndocker build -t hitokoto:secret .",
+  "mac": "echo \"DB_PASSWORD=renshu-pass\" > .env\ndocker build -t hitokoto:secret ."
+ },
+ {
+  "t": "cmd",
+  "win": "docker run --rm hitokoto:secret cat .env",
+  "mac": "docker run --rm hitokoto:secret cat .env"
+ },
+ {
+  "t": "out",
+  "text": "DB_PASSWORD=renshu-pass",
+  "label": "表示される内容（例）"
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン8の完成/hitokoto/.dockerignore",
+  "dst": ".dockerignore"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rmi hitokoto:secret",
+  "mac": "docker rmi hitokoto:secret"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker scout quickview hitokoto:full\ndocker scout quickview hitokoto:2.0",
+  "mac": "docker scout quickview hitokoto:full\ndocker scout quickview hitokoto:2.0"
+ },
+ {
+  "t": "out",
+  "text": "  Target   │  hitokoto:2.0  │   0C   …H   …M   …L\n    digest  │  …\n  Base image  │  python:3.15-slim  │ …",
+  "label": "表示される内容（例。数は日によって変わります）"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker scout cves hitokoto:2.0 --only-severity critical,high",
+  "mac": "docker scout cves hitokoto:2.0 --only-severity critical,high"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker tag hitokoto:2.0 myname/hitokoto:2.0\ndocker push myname/hitokoto:2.0",
+  "mac": "docker tag hitokoto:2.0 myname/hitokoto:2.0\ndocker push myname/hitokoto:2.0"
+ },
+ {
+  "t": "cmd",
+  "win": "docker rm -f app",
+  "mac": "docker rm -f app"
+ }
+]
