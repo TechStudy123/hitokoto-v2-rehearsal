@@ -1,0 +1,196 @@
+[
+ {
+  "t": "file",
+  "path": "compose.yaml",
+  "text": "services:\n  app:\n    build: .\n    ports:\n      - \"8000:8000\"\n    environment:\n      DB_HOST: db\n      DB_PASSWORD: renshu-pass\n\n  db:\n    image: postgres:18\n    environment:\n      POSTGRES_PASSWORD: renshu-pass\n    volumes:\n      - pgdata:/var/lib/postgresql\n\nvolumes:\n  pgdata:",
+  "label": "compose.yaml新しく作る"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose up -d",
+  "mac": "docker compose up -d"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "out",
+  "text": " Network hitokoto_default Created\n Volume hitokoto_pgdata Created\n Container hitokoto-db-1 Started\n Container hitokoto-app-1 Started",
+  "label": "表示される内容（抜き出し。並び方は環境によって変わります）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose ps",
+  "mac": "docker compose ps"
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "データベース（db）に保存しています"
+ },
+ {
+  "t": "http",
+  "method": "POST",
+  "url": "http://localhost:8000/",
+  "form": {
+   "text": "Composeで保存"
+  },
+  "status": 200
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose logs app",
+  "mac": "docker compose logs app"
+ },
+ {
+  "t": "out",
+  "text": "app-1  | INFO:     データベース db につながりました\n…\napp-1  | INFO:     … \"POST / HTTP/1.1\" 303 See Other",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose down\ndocker compose up -d",
+  "mac": "docker compose down\ndocker compose up -d"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose down -v\ndocker compose up -d",
+  "mac": "docker compose down -v\ndocker compose up -d"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "まだ書き込みはありません"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose stop db",
+  "mac": "docker compose stop db"
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 500,
+  "contains": "つながりません"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose logs app",
+  "mac": "docker compose logs app"
+ },
+ {
+  "t": "out",
+  "text": "app-1  | psycopg.OperationalError: failed to resolve host 'db': [Errno -2] Name or service not known",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose start db",
+  "mac": "docker compose start db"
+ },
+ {
+  "t": "wait",
+  "sec": 4
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "データベース（db）に保存しています"
+ },
+ {
+  "t": "file",
+  "path": "compose.yaml",
+  "text": "services:\n  app:\n    build: .\n    ports:\n      - \"8000:8000\"\n    environment:\n      DB_HOST: db\n      DB_PASSWORD: renshu-pass\n    depends_on:\n      db:\n        condition: service_healthy\n\n  db:\n    image: postgres:18\n    environment:\n      POSTGRES_PASSWORD: renshu-pass\n    volumes:\n      - pgdata:/var/lib/postgresql\n    healthcheck:\n      test: [\"CMD\", \"pg_isready\", \"-U\", \"postgres\"]\n      interval: 2s\n      timeout: 5s\n      retries: 15\n\nvolumes:\n  pgdata:",
+  "label": "compose.yaml置き換え"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose down\ndocker compose up -d",
+  "mac": "docker compose down\ndocker compose up -d"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "out",
+  "text": " Container hitokoto-db-1 Started\n Container hitokoto-db-1 Waiting\n Container hitokoto-db-1 Healthy\n Container hitokoto-app-1 Started",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose ps",
+  "mac": "docker compose ps"
+ },
+ {
+  "t": "file",
+  "path": ".env.example",
+  "text": "# この見本を写して .env を作り、値を書き換えて使います（.env はリポジトリに入れません）\n#   cp .env.example .env\nDB_PASSWORD=renshu-pass",
+  "label": ".env.example新しく作る"
+ },
+ {
+  "t": "cmd",
+  "win": "cp .env.example .env",
+  "mac": "cp .env.example .env"
+ },
+ {
+  "t": "file",
+  "path": "compose.yaml",
+  "text": "services:\n  app:\n    build: .\n    ports:\n      - \"8000:8000\"\n    environment:\n      DB_HOST: db\n      DB_PASSWORD: ${DB_PASSWORD}\n    depends_on:\n      db:\n        condition: service_healthy\n\n  db:\n    image: postgres:18\n    environment:\n      POSTGRES_PASSWORD: ${DB_PASSWORD}\n    volumes:\n      - pgdata:/var/lib/postgresql\n    healthcheck:\n      test: [\"CMD\", \"pg_isready\", \"-U\", \"postgres\"]\n      interval: 2s\n      timeout: 5s\n      retries: 15\n\nvolumes:\n  pgdata:",
+  "label": "compose.yaml置き換え"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose up -d",
+  "mac": "docker compose up -d"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8000/",
+  "status": 200,
+  "contains": "データベース（db）に保存しています"
+ },
+ {
+  "t": "file",
+  "path": "compose.yaml",
+  "text": "services:\n  app:\n    build: .\n    ports:\n      - \"8000:8000\"\n    environment:\n      DB_HOST: db\n      DB_PASSWORD: ${DB_PASSWORD}\n    depends_on:\n      db:\n        condition: service_healthy\n    develop:\n      watch:\n        - action: sync\n          path: ./templates\n          target: /app/templates\n        - action: rebuild\n          path: requirements.txt\n\n  db:\n    image: postgres:18\n    environment:\n      POSTGRES_PASSWORD: ${DB_PASSWORD}\n    volumes:\n      - pgdata:/var/lib/postgresql\n    healthcheck:\n      test: [\"CMD\", \"pg_isready\", \"-U\", \"postgres\"]\n      interval: 2s\n      timeout: 5s\n      retries: 15\n\nvolumes:\n  pgdata:",
+  "label": "compose.yaml置き換え"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "docker compose up --watch",
+  "mac": "docker compose up --watch"
+ },
+ {
+  "t": "copy",
+  "src": "完成コード/ハンズオン6の完成/hitokoto/templates/index.html",
+  "dst": "templates/index.html"
+ },
+ {
+  "t": "out",
+  "text": " ⦿ Syncing service \"app\" after 1 changes were detected",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose down",
+  "mac": "docker compose down"
+ }
+]
