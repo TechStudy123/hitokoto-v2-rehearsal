@@ -1,0 +1,161 @@
+[
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "cd ~\ngit clone https://github.com/container-nyumon/team-board.git\ncd team-board",
+  "mac": "cd ~\ngit clone https://github.com/container-nyumon/team-board.git\ncd team-board"
+ },
+ {
+  "t": "cmd",
+  "mac": "git clone https://github.com/container-nyumon/team-board.git ../team-board",
+  "win": null
+ },
+ {
+  "t": "cd",
+  "path": "../team-board"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "code README.md",
+  "mac": "code README.md"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "code compose.yaml",
+  "mac": "code compose.yaml"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose config --services",
+  "mac": "docker compose config --services"
+ },
+ {
+  "t": "out",
+  "text": "cache\ndb\nweb",
+  "label": "表示される内容（並び方は環境によって変わります）"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "code Dockerfile\ncode .env.example",
+  "mac": "code Dockerfile\ncode .env.example"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose config",
+  "mac": "docker compose config"
+ },
+ {
+  "t": "out",
+  "text": "… level=warning msg=\"The \\\"DB_PASSWORD\\\" variable is not set. Defaulting to a blank string.\"\n… level=warning msg=\"The \\\"ADMIN_TOKEN\\\" variable is not set. Defaulting to a blank string.\"\n…",
+  "label": "表示される内容（最初の行）"
+ },
+ {
+  "t": "cmd",
+  "rc": 1,
+  "win": "docker compose up -d",
+  "mac": "docker compose up -d"
+ },
+ {
+  "t": "out",
+  "text": "…\n Container team-board-db-1 Error dependency db failed to start\ndependency failed to start: container team-board-db-1 exited (1)",
+  "label": "表示される内容（最後の行）"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose ps -a\ndocker compose logs db",
+  "mac": "docker compose ps -a\ndocker compose logs db"
+ },
+ {
+  "t": "out",
+  "text": "db-1  | Error: Database is uninitialized and superuser password is not specified.",
+  "label": "表示される内容（抜き出し）"
+ },
+ {
+  "t": "cmd",
+  "win": "cp .env.example .env",
+  "mac": "cp .env.example .env"
+ },
+ {
+  "t": "env",
+  "key": "DB_PASSWORD",
+  "value": "renshu-pass"
+ },
+ {
+  "t": "env",
+  "key": "ADMIN_TOKEN",
+  "value": "team-aikotoba"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "cd /workspaces/hitokoto\ndocker compose up -d --build\ncd ~/team-board",
+  "mac": "cd /workspaces/hitokoto\ndocker compose up -d --build\ncd ~/team-board"
+ },
+ {
+  "t": "cmd",
+  "mac": "cd ../hitokoto && cp .env.example .env && docker compose up -d --build && cd ../team-board",
+  "win": null
+ },
+ {
+  "t": "cmd",
+  "rc": 1,
+  "win": "docker compose up -d",
+  "mac": "docker compose up -d"
+ },
+ {
+  "t": "out",
+  "text": "… Bind for 0.0.0.0:8000 failed: port is already allocated",
+  "label": "表示される内容（最後の部分）"
+ },
+ {
+  "t": "env",
+  "key": "WEB_PORT",
+  "value": "8001"
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose up -d",
+  "mac": "docker compose up -d"
+ },
+ {
+  "t": "wait",
+  "sec": 6
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8001/",
+  "status": 200,
+  "contains": "回表示されました"
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8001/admin?token=team-aikotoba",
+  "status": 200,
+  "contains": "連絡は"
+ },
+ {
+  "t": "http",
+  "url": "http://localhost:8001/admin?token=machigai",
+  "status": 403
+ },
+ {
+  "t": "cmd",
+  "win": "docker compose down -v",
+  "mac": "docker compose down -v"
+ },
+ {
+  "t": "cmd",
+  "skip": true,
+  "win": "cd /workspaces/hitokoto\ncode .devcontainer/devcontainer.json",
+  "mac": "cd /workspaces/hitokoto\ncode .devcontainer/devcontainer.json"
+ },
+ {
+  "t": "file",
+  "path": "../hitokoto/.devcontainer/devcontainer.json",
+  "text": "{\n  \"name\": \"hitokoto（Docker が使える環境）\",\n  \"image\": \"mcr.microsoft.com/devcontainers/base:ubuntu-24.04\",\n  \"features\": {\n    \"ghcr.io/devcontainers/features/docker-in-docker:2\": {\n      \"moby\": false,\n      \"dockerDashComposeVersion\": \"none\"\n    }\n  },\n  \"customizations\": {\n    \"vscode\": {\n      \"extensions\": [\n        \"ms-azuretools.vscode-containers\"\n      ]\n    }\n  },\n  \"postCreateCommand\": \"docker compose version\",\n  \"hostRequirements\": {\n    \"cpus\": 2\n  },\n  \"forwardPorts\": [\n    8000,\n    8080\n  ],\n  \"portsAttributes\": {\n    \"8000\": {\n      \"label\": \"ひとこと掲示板\"\n    },\n    \"8080\": {\n      \"label\": \"Web サーバー（nginx）\"\n    }\n  }\n}",
+  "label": ".devcontainer/devcontainer.json（足した後）置き換え"
+ }
+]
