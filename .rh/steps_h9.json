@@ -107,7 +107,7 @@
  },
  {
   "t": "out",
-  "text": "… Bind for 0.0.0.0:8000 failed: port is already allocated",
+  "text": "… port is already allocated",
   "label": "表示される内容（最後の部分）"
  },
  {
